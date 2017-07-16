@@ -1,0 +1,123 @@
+:root {
+  --primary-color: #212121;
+  --text-color: #212121;
+}
+
+body {
+  background-color: white;
+  color: var(--text-color);
+}
+
+/* login */
+#login {
+  transition: 0.5s;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  width: 100%;
+  height: 100%;
+  background-color: var(--primary-color);
+}
+
+#login.hidden {
+  top: -100%;
+}
+
+#loginForm {
+  display: inline-block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+
+#loginButton {
+  vertical-align: bottom;
+}
+
+/* Main layout */
+#main {
+  width: 100%;
+  height: 100%;
+}
+
+#topBar {
+  width: 100%;
+  height: 64px;
+  background-color: var(--primary-color);
+}
+
+#content {
+  position: relative;
+  width: 100%;
+  height: calc(100% - 64px);
+}
+
+#leftBar, #appsContents {
+  display: inline-block;
+  transition: 0.2s;
+  height: 100%;
+  vertical-align: top;
+}
+
+#leftBar {
+  width: 250px;
+  border-right: 1px solid var(--primary-color);
+}
+
+#appsContents {
+  position: relative;
+  width: calc(100% - 250px);
+  overflow: hidden;
+}
+
+.appButton {
+  transition: 0.2s;
+  width: 100%;
+  height: 36px;
+  line-height: 36px;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 0 8px 0 8px;
+}
+
+.appButton:hover {
+  background-color: #EEEEEE; /* gray 200 */
+}
+
+.appButton:active {
+  background-color: #E0E0E0; /* gray 300 */
+}
+
+.appButton.active {
+  color: var(--primary-color-500);
+}
+
+.appButton > * {
+  vertical-align: middle;
+}
+
+.appButton > .material-icons {
+  margin-right: 8px;
+}
+
+.appButton > .name {
+  position: relative;
+  top: 2px;
+}
+
+#appsContents > div {
+  transition: left 0.2s;
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+}
+
+#appsContents > div.visible {
+  z-index: 1;
+  left: 0;
+}

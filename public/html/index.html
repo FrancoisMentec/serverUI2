@@ -1,0 +1,47 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>serverUI</title>
+    <!-- load material design -->
+    <link rel="stylesheet" href="/material-design/material-design.css">
+    <script type="text/javascript" src="/material-design/material-design.js"></script>
+    <!-- load style -->
+    <link rel="stylesheet" href="/css/main.css">
+  </head>
+  <body>
+    <div id="login">
+      <div id="loginForm">
+        <text-field id="loginPassword" label="Password" class="dark" type="password"></text-field>
+        <button id="loginButton" class="material-icons flat">arrow_forward</button>
+      </div>
+    </div>
+
+    <div id="main">
+      <div id="topBar">
+      </div><!--
+      --><div id="content">
+        <div id="leftBar">
+          <div id="appsButtons">
+          </div>
+        </div><!--
+        --><div id="appsContents">
+          <div id="content-dashboard">
+          </div>
+          <div id="content-files">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Load scripts -->
+    <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+    <script type="text/javascript" src="/js/serverUI.js"></script>
+    <!-- apps -->
+    <script type="text/javascript" src="/js/dashboard.js"></script>
+    <script type="text/javascript" src="/js/files.js"></script>
+
+    <script>
+      serverUI.login('pass') // login with default password on dev env
+    </script>
+  </body>
+</html>
