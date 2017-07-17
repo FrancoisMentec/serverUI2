@@ -1,10 +1,11 @@
 :root {
   --primary-color: #212121;
-  --text-color: #212121;
+	--app-primary-color: #303030;
+  --text-color: white;
 }
 
 body {
-  background-color: white;
+  background-color: #424242;
   color: var(--text-color);
 }
 
@@ -62,13 +63,13 @@ body {
 }
 
 #leftBar {
-  width: 250px;
+  width: 200px;
   border-right: 1px solid var(--primary-color);
 }
 
 #appsContents {
   position: relative;
-  width: calc(100% - 250px);
+  width: calc(100% - 200px);
   overflow: hidden;
 }
 
@@ -83,11 +84,12 @@ body {
 }
 
 .appButton:hover {
-  background-color: #EEEEEE; /* gray 200 */
+  background-color: rgba(0,0,0,0.1);
 }
 
 .appButton:active {
-  background-color: #E0E0E0; /* gray 300 */
+	transition: none;
+  background-color: rgba(0,0,0,0.2);
 }
 
 .appButton.active {
@@ -120,4 +122,17 @@ body {
 #appsContents > div.visible {
   z-index: 1;
   left: 0;
+}
+
+.appTopBar {
+	width: 100%;
+	height: 56px;
+	line-height: 56px;
+	background-color: var(--app-primary-color);
+}
+
+.appContent {
+	width: 100%;
+	height: calc(100% - 56px);
+	overflow: auto;
 }

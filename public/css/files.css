@@ -1,0 +1,15 @@
+#filesLeftBar, #filesDirectoryContent {
+	display: inline-block;
+	vertical-align: top;
+	height: 100%;
+	overflow: auto;
+}
+
+#filesLeftBar {
+	width: 200px;
+	border-right: 1px solid var(--app-primary-color);
+}
+
+#filesDirectoryContent {
+	width: calc(100% - 200px);
+}

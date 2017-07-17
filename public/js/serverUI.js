@@ -1,8 +1,8 @@
 (function () {
   class serverUI {
     constructor () {
-      materialDesign.primaryColor = 'blue'
-      materialDesign.secondaryColor = 'orange'
+      materialDesign.primaryColor = 'orange'
+      materialDesign.secondaryColor = 'green'
       materialDesign.errorColor = 'red'
 
       // login
@@ -67,6 +67,7 @@
       this.server.on('logged', logged => {
         this.logged = logged
       })
+
     }
 
     login (password) {
@@ -162,6 +163,10 @@
     hide () {
       this.serverUI.hideApp(this)
     }
+
+		emit (action, data) {
+			this.serverUI.emit(action, data)
+		}
 
     on (eventName, callback) {
       if (!this.listeners[eventName]) this.listeners[eventName] = []
