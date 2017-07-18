@@ -30,29 +30,33 @@ class User {
       this.logged = password === this.userManager.config.password
     })
 
-		this.socket.on('getDirectoryContent', path => {
+		this.socket.on('message', message => {
 			if (this.logged) {
-				fs.readdir(path, (err, files) => {
-					if (err) this.emit('err', err)
-					else {
-						let filesR = []
-						for (var i = 0, li = files.length; i < li; i++) {
-							let name = files[i]
-							let filepath = PATH.join(path, name)
-							let stat = fs.lstatSync(filepath)
-							filesR.push({
-								path: filepath,
-								name: name,
-								type: typeOfFile(stat),
-								size: stat.size
+				let action = message.action
+				if (action === 'getDirectoryContent') {
+					let path = message.message
+					fs.readdir(path, (err, files) => {
+						if (err) this.emit('err', err)
+						else {
+							let filesR = []
+							for (var i = 0, li = files.length; i < li; i++) {
+								let name = files[i]
+								let filepath = PATH.join(path, name)
+								let stat = fs.lstatSync(filepath)
+								filesR.push({
+									path: filepath,
+									name: name,
+									type: typeOfFile(stat),
+									size: stat.size
+								})
+							}
+							this.emit('directoryContent', {
+								path: path,
+								files: filesR
 							})
 						}
-						this.emit('directoryContent', {
-							path: path,
-							files: filesR
-						})
-					}
-				})
+					})
+				}
 			}
 		})
   }
@@ -64,12 +68,15 @@ class User {
   set logged (value) {
     if (this.logged === value) return
     this._logged = value
-    this.emit('logged', this.logged)
+    this.socket.emit('logged', this.logged)
   }
 
   emit (action, message) {
-    if (!this.logged && action !== 'logged') throw Error('User not logged.')
-    this.socket.emit(action, message)
+    if (!this.logged) throw Error('User not logged.')
+    this.socket.emit('message', {
+			action: action,
+			message: message
+		})
   }
 }
 

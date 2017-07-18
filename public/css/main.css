@@ -1,11 +1,10 @@
 :root {
-  --primary-color: #212121;
-	--app-primary-color: #303030;
-  --text-color: white;
+  --text-color: #212121;
+	--border-color: #9E9E9E;
 }
 
 body {
-  background-color: #424242;
+  background-color: white;
   color: var(--text-color);
 }
 
@@ -18,7 +17,7 @@ body {
   z-index: 1000;
   width: 100%;
   height: 100%;
-  background-color: var(--primary-color);
+  background-color: var(--primary-color-900);
 }
 
 #login.hidden {
@@ -46,7 +45,7 @@ body {
 #topBar {
   width: 100%;
   height: 64px;
-  background-color: var(--primary-color);
+  background-color: var(--primary-color-900);
 }
 
 #content {
@@ -64,7 +63,7 @@ body {
 
 #leftBar {
   width: 200px;
-  border-right: 1px solid var(--primary-color);
+  border-right: 1px solid var(--border-color);
 }
 
 #appsContents {
@@ -127,8 +126,9 @@ body {
 .appTopBar {
 	width: 100%;
 	height: 56px;
+	padding: 0 8px 0 8px;
 	line-height: 56px;
-	background-color: var(--app-primary-color);
+	background-color: var(--primary-color-800);
 }
 
 .appContent {

@@ -1,8 +1,8 @@
 (function () {
   class serverUI {
     constructor () {
-      materialDesign.primaryColor = 'orange'
-      materialDesign.secondaryColor = 'green'
+      materialDesign.primaryColor = 'blue'
+      materialDesign.secondaryColor = 'orange'
       materialDesign.errorColor = 'red'
 
       // login
@@ -68,18 +68,24 @@
         this.logged = logged
       })
 
+			this.server.on('message', message => {
+				this.trigger(message.action, message.message)
+			})
     }
 
     login (password) {
       password = password || this.loginPassword.value
       this.loginPassword.value = ''
-      this.emit('login', password)
+      this.server.emit('login', password)
     }
 
     emit (action, message) {
       //if (!this.connected) throw Error('Not connected.')
-      if (!this.logged && action !== 'login') throw Error('Not logged.')
-      this.server.emit(action, message)
+      if (!this.logged) throw Error('Not logged.')
+      this.server.emit('message', {
+				action: action,
+				message: message
+			})
     }
 
     addApp (name, icon, init) {
@@ -181,6 +187,10 @@
       }
     }
   }
+
+	HTMLElement.prototype.empty = function () {
+		while (this.firstChild) this.removeChild(this.firstChild)
+	}
 
   window.serverUI = new serverUI()
 })()
